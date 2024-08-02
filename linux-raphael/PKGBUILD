@@ -18,8 +18,10 @@ _ref_ksource="35e5c5db1ba4a5cab994638817481220f88b8275"
 source=(
     "kernel::git+https://github.com/degdag-mohamed/linux.git#commit=${_ref_ksource}"
     "linux-raphael.preset"
+    "raphael.config"
 )
 sha256sums=(
+    'SKIP'
     'SKIP'
     'SKIP'
 )
