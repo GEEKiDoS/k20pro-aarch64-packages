@@ -19,7 +19,7 @@ source=(
     "kernel::git+https://github.com/degdag-mohamed/linux.git#commit=${_ref_ksource}"
     "linux-raphael.preset"
 )
-sha256sums=(SKIP)
+sha256sums=('SKIP')
 
 prepare() {
     cd "${srcdir}/kernel"
