@@ -54,18 +54,18 @@ jobs:
         mkdir release
         mv linux-raphael/*.pkg.tar.zst release
 
-    - name: Sign packages
-      env:
-        GPG_KEY: ${{ secrets.LINUX_RAPHAEL_GPG_KEY }}
-      run: |
-        cd release
+    # - name: Sign packages
+    #   env:
+    #     GPG_KEY: ${{ secrets.LINUX_RAPHAEL_GPG_KEY }}
+    #   run: |
+    #     cd release
 
-        # import GPG key
-        echo "$GPG_KEY" | base64 -d | gpg --import --no-tty --batch --yes
-        export GPG_TTY=$(tty)
+    #     # import GPG key
+    #     echo "$GPG_KEY" | base64 -d | gpg --import --no-tty --batch --yes
+    #     export GPG_TTY=$(tty)
 
-        # sign packages
-        ls *.pkg.tar.zst | xargs -L1 gpg --detach-sign --batch --no-tty -u $GPG_KEY_ID
+    #     # sign packages
+    #     ls *.pkg.tar.zst | xargs -L1 gpg --detach-sign --batch --no-tty -u $GPG_KEY_ID
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
