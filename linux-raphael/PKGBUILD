@@ -2,32 +2,24 @@
 #
 # Based on Arch Linux and Arch Linux for ARM PKGBUILDs
 
-pkgbase="linux-surface"
-pkgver="6.8.2"
+pkgbase="linux-raphael"
+pkgver="6.6rc1"
+_pkgver="6.6-rc1"
 pkgrel="1"
 
-_pkgdesc="Linux Surface"
+_pkgdesc="Linux (raphael)"
 
 arch=("aarch64")
 options=("!strip")
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 
-_ref_ksource="ee97af947e012bf96dd4a3348bcacd67cc5af711"
-_ref_config_base="9b0f0dc178d4c4fb69285643fa7e81da7db21444"
-_ref_config_surface="a5ea7de82e4d9bd6f6ba8c8e1f9621056d771723"
+_ref_ksource="35e5c5db1ba4a5cab994638817481220f88b8275"
 
 source=(
-    "kernel::git+https://github.com/linux-surface/kernel.git#commit=${_ref_ksource}"
-    "base.config::https://raw.githubusercontent.com/archlinuxarm/PKGBUILDs/${_ref_config_base}/core/linux-aarch64/config"
-    "surface.config::https://raw.githubusercontent.com/qzed/aarch64-kernel-configs/${_ref_config_surface}/fragments/spx.config"
-    "overrides.config"
-    "linux-surface.preset"
+    "kernel::git+https://github.com/degdag-mohamed/linux.git#commit=${_ref_ksource}"
+    "linux-raphael.preset"
 )
-sha256sums=('b91a7c5eb4d5c35648a7ce244a059b45ac8ae6afa4fa0cc33fb14ba98a951bb4'
-            '165b382e4ab13251d15d9f41e50976131b410fa4fa2d5fe5f1a081a58c235a52'
-            '6769de357507321f4332b1bbd20f4e3fd4460790f2ef4728d49ab9e2634f085a'
-            'f8041d666e2775b2e36d243708b0fae574914a0ce2a4e260c19127932f3d072e'
-            '93a04085e8cebbd5feab98482d764b515b30dd95945d33117d1cd27ffe03e3e7')
+sha256sums=(SKIP)
 
 prepare() {
     cd "${srcdir}/kernel"
@@ -40,7 +32,7 @@ prepare() {
     echo "${pkgbase#linux}" > "localversion.20-pkgname"
 
     msg2 "Configuring..."
-    ./scripts/kconfig/merge_config.sh -m "${srcdir}/base.config" "${srcdir}/surface.config" "${srcdir}/overrides.config"
+    ./scripts/kconfig/merge_config.sh -m "${srcdir}/raphael.config"
     make olddefconfig
 }
 
