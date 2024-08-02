@@ -1,7 +1,4 @@
-on:
-  push:
-    tags:
-      - 'linux_surface-*'
+on: [workflow_dispatch]
 
 env:
   GPG_KEY_ID: 0F10857DF3688E72
